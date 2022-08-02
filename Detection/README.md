@@ -44,9 +44,9 @@ For TC and JB, we extract patches of size 256 with a stride of 128 as shown in t
 
 After combining all the extracted patches from TCGA, TC and JB, we will obtain 23654 patches where 199223 TILs are annotated.
 
-3) We then augment the training patches by keeping the original patches, flipping the patches left/right, flipping the patches up/down and also tranposing each patche. This will increase the numebr of total patches to 94616 with 796892 TILs annotated. We then shuffle the training patches by fixing the random state.
+3) We then augment the training patches by keeping the original patches, flipping the patches left/right, flipping the patches up/down and also tranposing each patch. This will increase the numebr of total patches to 94616 with 796892 TILs annotated. We then shuffle the training patches by fixing the random state.
 
-4) For the test patches, we do the same operations as explained above. This will result in 2296 test patches where 22411 TILs are annotated. This time instead of augmenting the test patches, we randomly flip patches left/right, up/down and taking the transpose of the patches. We then suffle the test patches by fixing the random state.
+4) For the test patches, we do the same steps as explained above. This will result in 2296 test patches where 22411 TILs are annotated. This time instead of augmenting the test patches, we randomly flip patches left/right, up/down and taking the transpose of the patches. We then suffle the test patches by fixing the random state.
 
 5) For training, from the train TILs annotations, we create a mask by extending the centroid position of the TILs to a square of size of 12 pixels as shown below:
 The mask values of the squares are one and everything else is set to zero.
@@ -54,7 +54,7 @@ The mask values of the squares are one and everything else is set to zero.
 ![image](https://user-images.githubusercontent.com/68286434/181013615-fd2da0d8-ebca-4ce9-b57b-500086eab126.png)
 ![image](https://user-images.githubusercontent.com/68286434/181013640-4480a683-07ff-4da3-9d3b-5a8fec08846f.png)
 
-For training we train a U-Net model using the InceptionV3 as backend. Imagenet pretrained weights are used. The input patches are first normalized from values between 0 to 255 to values between 0 to 1. The loss function is a binary cross entropy loss. We train the network for 1 epoch using a batch size of 32. ADAM is chosen as the optimizer with a fixed learning rate of 0.001. After trainig the model weights are saved.
+We train a U-Net model using the InceptionV3 as backend. Imagenet pretrained weights are used. The input patches are first normalized from values between 0 to 255 to values between 0 to 1. The loss function is a binary cross entropy loss. We train the network for 1 epoch using a batch size of 32. ADAM is chosen as the optimizer with a fixed learning rate of 0.001. After trainig the model weights are saved.
 
 Below some examples of the model predicitons on the test patches are shown:
 
@@ -62,7 +62,7 @@ Below some examples of the model predicitons on the test patches are shown:
 ![image](https://user-images.githubusercontent.com/68286434/181013818-0794c709-5978-4e27-a343-61eecb1e225e.png)
 ![image](https://user-images.githubusercontent.com/68286434/181013825-bd5673b4-c282-49f2-8ff6-5bffabf1c34a.png)
 
-In order to extract locations of the detected TILs from the prediction masks, we first filter the mask values below a threshold value. In this case we chose the threshold value to 0.1, as a result, anything with probability less than 0.1 will be discarded. Furthermore, by applying a non-max suppression on the distance we can obtain the centroid position of the detected TILs. Here we chose the non-max suppression distance to 12 pixels which is equal to the suqare size chosen in the traning mask:
+In order to extract locations of the detected TILs from the prediction masks, we first filter the mask values below a threshold value. In this case we chose the threshold value to 0.1, as a result, anything with probability less than 0.1 will be discarded. Furthermore, by applying a non-max suppression on the distance we can obtain the centroid position of the TILs. Here we chose the non-max suppression distance to 12 pixels which is equal to the suqare size chosen in the traning mask:
 
 ![image](https://user-images.githubusercontent.com/68286434/181013935-269968a5-b4b5-4bcf-a356-6d405ff4b615.png)
 
