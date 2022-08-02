@@ -1,7 +1,7 @@
 import numpy as np
 
 #### Input the location of the TIGER data in the loca disk######
-data_path = '/home/arian/Desktop/ResearchComputer/TIGER Data'
+data_path = ''
 
 ##### Loading TCGA images and masks #######
 from extract_tcga_data import extract_tcga_data
