@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 ########################## load TCGA, TC, JB images and TILs ##########################
-path = '/home/arian/Desktop/ResearchComputer/TIGER Data'
+path = ''
 
 from extract_tcga_data import extract_tcga_data
 tcga_imgs, tcga_points, tcga_imgs_reserve, tcga_points_reserve = extract_tcga_data(path)
