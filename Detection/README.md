@@ -16,7 +16,7 @@ TCGA Exmaple:
 
 ![image](https://user-images.githubusercontent.com/68286434/181012537-d2acc5de-7fbe-4631-a2c8-1aa60e438d71.png)
 
-For TCGA, the annotated ROIs have size smaller than 256 pixels. We intentionally extracted ROIs form the original TIFF images of fixed sizes of 500*500 (expanding the original ROIs). This will ensure that we can train a model where trainig patches of size of 256 are possible to be extracted from the traning ROIs. We should note that not all the TILs in the extracted ROIs are annotated (as can be seen in the example above). This way for TCGA we are training a model where the annoatations are semi-annotated.
+For TCGA, the annotated ROIs have size smaller than 256 pixels. We intentionally extracted ROIs form the original TIFF images of fixed sizes of 500*500 (expanding the original ROIs). This will ensure that we can train a model where trainig patches are of size of 256 pixels. We should note that not all the TILs in the extracted ROIs are annotated (as can be seen in the example above). This way for TCGA we are training a model where the annoatations are semi-annotated.
 
 Each of the TIL annotations marks the centroid position of the TILs: [x_c , y_c] where x_c is the centroid position along the x-axis and correspondingly for y_c along the y-axis.
 
