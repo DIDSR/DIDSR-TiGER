@@ -4,11 +4,11 @@ To train the segmentation algorithm run the "segmentation.py" script.
 
 The training data is composed of 151 slides from the TCGA dataset, 26 slides from the RUMC dataset (we will call it TC from now on), and 18 slides from the JB dataset (https://tiger.grand-challenge.org/Data/).
 
-For TCGA dataset, each slide has exacly one ROI annotated by the pathologist, resulting in 151 ROIs annotated.
+For TCGA dataset, each slide has exacly one region of interest (ROI) annotated by the pathologist, resulting in 151 ROIs.
 
-For TC (RUMC) dataset, 81 ROIs are annotated. 25 slides have 3 ROIs and one slide has 6 ROIs annotated resulting in total of 25*3+6 = 81 ROIs.
+For TC (RUMC) dataset, 81 ROIs are annotated. 25 slides have 3 ROIs and one slide has 6 ROIs, resulting in total of 25*3+6 = 81 ROIs.
 
-For JB dataset, each slide has 3 ROIs annotated resulting in 18*3 = 54 ROIs.
+For JB dataset, each slide has 3 ROIs, resulting in 18*3 = 54 ROIs.
 
 The segmentation masks contain values from [0,1,2,3,4,5,6,7]. 0 corresponds to the regions in the ROI not annotated by the pathologist. 1 corresponds to the "invasive-tumor". 2 corresponds to the "tumor-associated stroma". 3 correponds to "in-situ tumor". 4 corresponds to "healthy glands". 5 corresponds to "necrosis not in-situ". 6 corresponds to "inflammed stroma". 7 corresponds to the "rest" class, not falling into any categories described above.
 
@@ -16,9 +16,9 @@ For the segmentation evaluation, participants have to only segment the tissue in
 
 ![image](https://user-images.githubusercontent.com/68286434/181014711-78027965-0c48-4c63-a938-dad981dfae3e.png)
 
-As a result, we are segmenting the tissue into "Rest class", "Tumor class" and "Stroma class". The mask values of 0 correspond to the "Rest" class. Mask values of 1 correpond to the "Tumor" class and 2 corresponds to the "Stroma" class.
+As a result, we are segmenting the tissue into "Rest class", "Tumor class" and "Stroma class". The mask values of 0 correspond to the "Rest" class. Mask values of 1 correpond to the "Tumor" class and mask values of 2 corresponds to the "Stroma" class.
 
-By relabling the classes as discussed above, the following table shows the class imbalance between the three classes among the TCGA, TC and JB datasets:
+The following table shows the class imbalance between the three classes among the TCGA, TC and JB datasets:
 
 ![image](https://user-images.githubusercontent.com/68286434/181014748-7d3f4343-689a-43b5-92df-6350f2f03830.png)
 
