@@ -62,11 +62,11 @@ Steps below describes the pipeline to develpe the segmentation model:
 
 ![image](https://user-images.githubusercontent.com/68286434/181015792-51195300-61ae-48c7-b81c-1f6a7ab395e2.png)
 
-6) Shuffle the patches using a fixed RandomState set to 42.
-7) Augment the patches spatially using the D4 symmetry group of a square. This will enhance the number of patches from 34693 to 34693*8 = 277544 patches. D4 symmetry of a square:
+6) Augment the patches spatially using the D4 symmetry group of a square. This will enhance the number of patches from 34693 to 34693*8 = 277544 patches. D4 symmetry of a square:
 
 ![image](https://user-images.githubusercontent.com/68286434/181015913-a26934d9-2496-4fc2-8569-b48415ac6c93.png)
 
+7) Shuffle the patches using a fixed RandomState set to 42.
 8) Find the calss imbalance between the 3 classes of the patches masks. This will result in a class weight of [1.6,1,0.76]. We will use this class weight in the dice loss function.
 9) We will train a U-Net model using the InceptionV3 as backend. We will also use the pre-trained imagenet weights to train the segmentation model. In order to avoid over fitting we added a dropout layer before the softmax layer. The dropout value is set to 0.4. The InceptionV3 pre-processing unit is used to pre-process the training patches. This will normalize the patches ranging from 0 to 255 to -1 to 1. A batch-size of 32 is used and we will train the network for 30 epochs. ADAM is used as optimizer with a fixed learning rate of 0.0001. Loss function is the compound loss of dice_loss(class_weights) and the categorical focal loss.
 Loss = dice_loss(class_weights)+focal_loss.
