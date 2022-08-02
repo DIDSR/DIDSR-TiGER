@@ -78,7 +78,8 @@ Training Intersection over Union for 30 epochs:
 10) The 30th epoch weights will be saved and used as the final model to segment the H&E images into 'rest', 'tumor' and 'stroma' class.
 
 11) We will use the np.argmax function to find the prediction with the highest probaility. 0 corresponds to the rest class, 1 to tumor class and 2 to stroma class.
-In order to follow the above-mentioned steps run the "segmentation.py" function. Here you can see some examples of the model predicting the segmentation mask:
+
+Here you can see some examples of the model predicting the segmentation mask:
 
 ![image](https://user-images.githubusercontent.com/68286434/181016537-5759b7f1-2f8d-42b6-9b5f-49189f439aed.png)
 ![image](https://user-images.githubusercontent.com/68286434/181016558-3c77633f-cb9a-4074-b0a7-01fc17ab523b.png)
