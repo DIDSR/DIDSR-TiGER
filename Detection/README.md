@@ -66,7 +66,7 @@ In order to extract locations of the detected TILs from the prediction masks, we
 
 ![image](https://user-images.githubusercontent.com/68286434/181013935-269968a5-b4b5-4bcf-a356-6d405ff4b615.png)
 
-By predicting TILs from the test patches, we can compute the FROC score with a distance threshold set to 8 pixels which is the hit-distance set by the organizers in the TIGER challenge (A detection will be a True-Positive if it lies within a distance of 8 pixels with respect to the ground-truth).
+Figure below is the FROC curve of the model's predictions on the test patches. We can compute the FROC score with a distance threshold set to 8 pixels which is the hit-distance set by the organizers in the TIGER challenge (A detection will be a True-Positive if it lies within a distance of 8 pixels with respect to the ground-truth).
 
 ![image](https://user-images.githubusercontent.com/68286434/181014064-f11804a6-4ee5-4f61-9aac-e1e8153f3929.png)
 
