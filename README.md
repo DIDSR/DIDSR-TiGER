@@ -14,7 +14,7 @@ Using the following equation we can obtain a score as a TILs score which is a nu
 
 For a slide image, we extract patches of size 256 with a stride of 256 in a for loop along the x-axis and another for loop along the y-axis to scan the whole slide image. For each patch, we predict a segmentation mask and detect the TILs. We then count the number of TILs on the stromal region and we also calculate the area of the stromal regions. Doing so for all the extracted patches, we can obtain the total number of detected TILs on the stromal region along with the stromal area to calculate the TILs-score.
 
-Here, as an example, one slide image along with the tissue mask is shown. Tissue mask identifies the region of the tissue, everything else is the slide background. On the tissue region the algorithm identifies the stromal and tumor regions along with the detected TILs. As a result, a single score as TILs-score can be obtained:
+Here, as an example, one slide image along with the tissue mask is shown. Tissue mask identifies the region of the tissue, everything else is the slide background. On the tissue region the algorithm identifies the stromal and tumor regions along with the TILs. As a result, a single score as TILs score can be obtained:
 
 ![image](https://user-images.githubusercontent.com/68286434/181023515-2135f75d-1736-4420-b127-6009d2c67d8e.png)
 
