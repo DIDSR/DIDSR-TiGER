@@ -52,7 +52,7 @@ We developed a 3-class segmentation model using a U-Net model with InceptionV3 a
 
 https://github.com/qubvel/segmentation_models
 
-Steps below describes the pipeline to develpe the segmentation model:
+Steps below describe the pipeline to develpe the segmentation model:
 
 1) Load all the TCGA, TC and JB images and masks.
 2) Relabel the mask values to 0,1 and 2 ("change_masks.py" relables the mask values).
@@ -71,7 +71,7 @@ Steps below describes the pipeline to develpe the segmentation model:
 9) We will train a U-Net model using the InceptionV3 as backend. We will also use the pre-trained imagenet weights to train the segmentation model. In order to avoid over fitting we added a dropout layer before the softmax layer. The dropout value is set to 0.4. The InceptionV3 pre-processing unit is used to pre-process the training patches. This will normalize the patches ranging from 0 to 255 to -1 to 1. A batch-size of 32 is used and we will train the network for 30 epochs. ADAM is used as optimizer with a fixed learning rate of 0.0001. Loss function is the compound loss of dice_loss(class_weights) and the categorical focal loss.
 Loss = dice_loss(class_weights)+focal_loss.
 
-Training Intersection over Union for 30 epochs:
+Training Intersection over Union (IOU) for 30 epochs:
 
 ![image](https://user-images.githubusercontent.com/68286434/181016176-603128cb-bb27-4c7b-ae6b-65cf2cb9ef61.png)
 
@@ -79,7 +79,7 @@ Training Intersection over Union for 30 epochs:
 
 11) We will use the np.argmax function to find the prediction with the highest probaility. 0 corresponds to the rest class, 1 to tumor class and 2 to stroma class.
 
-Here you can see some examples of the model predicting the segmentation mask:
+Here you can see some examples when the model is applied to some test patches:
 
 ![image](https://user-images.githubusercontent.com/68286434/181016537-5759b7f1-2f8d-42b6-9b5f-49189f439aed.png)
 ![image](https://user-images.githubusercontent.com/68286434/181016558-3c77633f-cb9a-4074-b0a7-01fc17ab523b.png)
