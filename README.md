@@ -1,5 +1,3 @@
-# TiGER
-
 ## **DIDSR-TiGER Algorithm**
 
 This repository contains the algorithm and the codes developed to predict a "TILs score" in breast cancer histhopathology images. The training and the test data is provided by the TiGER challenge team (https://tiger.grand-challenge.org/). Our model is ranked 5th in the final leaderboard of the challenge predicting a TILs-score with a C-index (concordance index) of 0.6034. The winning algorithm resulted in a C-index of 0.6388.
