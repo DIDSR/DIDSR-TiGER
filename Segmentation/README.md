@@ -12,7 +12,7 @@ For JB dataset, each slide has 3 ROIs, resulting in 18*3 = 54 ROIs.
 
 The segmentation masks contain values from [0,1,2,3,4,5,6,7]. 0 corresponds to the regions in the ROI not annotated by the pathologist. 1 corresponds to the "invasive-tumor". 2 corresponds to the "tumor-associated stroma". 3 correponds to "in-situ tumor". 4 corresponds to "healthy glands". 5 corresponds to "necrosis not in-situ". 6 corresponds to "inflammed stroma". 7 corresponds to the "rest" class, not falling into any categories described above.
 
-For the segmentation evaluation, participants have to only segment the tissue into stroma and tumor regions. For that, we relabel the mask values to train a 3-call segmentation model:
+For the segmentation evaluation, participants have to only segment the tissue into stroma and tumor regions. For that, we relabel the mask values to train a 3-class segmentation model:
 
 ![image](https://user-images.githubusercontent.com/68286434/181014711-78027965-0c48-4c63-a938-dad981dfae3e.png)
 
