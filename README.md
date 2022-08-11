@@ -20,4 +20,4 @@ Here, as an example, one slide image along with the tissue mask is shown. Tissue
 
 ## **Authors**
 
-This code is made by Arian Arab as part of the Division of Imaging, Diagnosis and Software Reliability of the United States Food and Drug Administration. This code is based on the code developed by the TIGER challenge organizers. Team members in developing the alogorithm: Weijie Chen, Victor Garcia, Nicholas Patrick, Brandon Gallas and Sahiner Berkman.
+This code is made by Arian Arab as part of the Division of Imaging, Diagnostics and Software Reliability of the United States Food and Drug Administration. This code is based on the code developed by the TIGER challenge organizers. Team members in developing the alogorithm: Weijie Chen, Victor Garcia, Nicholas Patrick, Brandon Gallas and Sahiner Berkman.
