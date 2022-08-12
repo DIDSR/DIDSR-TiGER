@@ -1,7 +1,8 @@
 import numpy as np
 from tqdm import tqdm
 import segmentation_models as sm
-
+import tensorflow as tf
+tf.config.list_physical_devices('GPU')
 sm.set_framework('tf.keras')
 sm.framework()
 
@@ -56,6 +57,34 @@ def non_max_supression_distance(points, distance_threshold):
     wanted = np.array(wanted)  
     return wanted
 
+def run_segmentation_detection(imgs, msks):
+    imgs_seg = [preprocess_input(i) for i in imgs]
+    imgs_det = [i/255.0 for i in imgs]
+    if len(imgs_seg)>1:
+        imgs_seg = np.array(imgs_seg)
+        imgs_det = np.array(imgs_det)
+        msks = np.array(msks)
+    else:
+        imgs_seg = np.expand_dims(imgs_seg, axis = 0)
+        imgs_det = np.expand_dims(imgs_det, axis = 0) 
+        msks = np.expand_dims(msks, axis = 0)                  
+    
+    predicted_masks_seg = seg_model.predict(imgs_seg, batch_size = 32, verbose = 0)    
+    predicted_masks_seg = np.argmax(predicted_masks_seg, axis = 3)            
+    predicted_masks_seg[predicted_masks_seg==0] = 3            
+    predicted_masks_seg = predicted_masks_seg*msks          
+    
+    predicted_masks_det = cell_det_model.predict(imgs_det,  batch_size = 32, verbose = 0)
+    predicted_masks_det = predicted_masks_det[:,:,:,0]                           
+    detections = []    
+    for n in range(len(predicted_masks_det)):        
+        tils = extract_predictions(predicted_masks_det[n], confidence_threshold = 0.1)
+        tils = non_max_supression_distance(tils,distance_threshold = 12)                   
+        if tils.shape[0]>0:
+            tils = [tils[i,:] for i in range(tils.shape[0]) if msks[n][int(tils[i,1]),int(tils[i,0])]==1]
+        detections.append(tils)
+    return predicted_masks_seg, detections
+
 def process():  
     
     level = READING_LEVEL
@@ -91,45 +120,61 @@ def process():
     print("Processing image...")
     # loop over image and get tiles
     no_of_stroma = 0
-    no_of_TILs = 0
-    for y in tqdm(range(0, dimensions[1], tile_size)):
-        for x in range(0, dimensions[0], tile_size):
+    no_of_TILs = 0    
+    x_vals = []
+    y_vals = []
+    img_tiles = []
+    tissue_masks = []
+    counts = 0    
+    y_range = range(0, dimensions[1], tile_size)
+    x_range = range(0, dimensions[0], tile_size)
+    
+    for y in tqdm(y_range):
+        for x in x_range:
             tissue_mask_tile = tissue_mask.getUCharPatch(
                 startX=x, startY=y, width=tile_size, height=tile_size, level=level
             ).squeeze()
             
             if not np.any(tissue_mask_tile):
                 continue
+                
+            counts += 1
 
             image_tile = image.getUCharPatch(startX=x, startY=y, width=tile_size, height=tile_size, level=level)
             
-            image_tile_preprocess = preprocess_input(image_tile)
-            image_tile_preprocess = np.expand_dims(image_tile_preprocess, axis = 0)
+            x_vals.append(x)
+            y_vals.append(y)
+            img_tiles.append(image_tile)
+            tissue_masks.append(tissue_mask_tile)
             
-            image_tile_det = (image_tile/255.0).astype('float32')            
-            image_tile_det = np.expand_dims(image_tile_det, axis = 0)            
-            
-            predicted_mask = seg_model.predict(image_tile_preprocess, batch_size = 32, verbose = 0)
-            predicted_mask = predicted_mask[0,:,:,:]
-            predicted_mask = np.argmax(predicted_mask, axis = 2)            
-            predicted_mask[predicted_mask==0] = 3            
-            predicted_mask = predicted_mask*tissue_mask_tile          
+            if counts == 512:                
+                predicted_masks, predicted_tils = run_segmentation_detection(img_tiles, tissue_masks)
+                for x,y,predicted_mask,detections in zip(x_vals,y_vals,predicted_masks,predicted_tils):
+                    segmentation_writer.write_segmentation(tile=predicted_mask, x=x, y=y)  
+                    detection_writer.write_detections(detections=detections, spacing=spacing, x_offset=x, y_offset=y) 
+                    # TILs Score
+                    if len(detections)>0:
+                        for i in detections:
+                            if predicted_mask[int(i[1]),int(i[0])] == 2:
+                                no_of_TILs += 1
+                    no_of_stroma += np.count_nonzero(predicted_mask==2) 
+                counts = 0
+                x_vals = []
+                y_vals = []
+                img_tiles = []
+                tissue_masks = [] 
+    
+    if len(img_tiles)>0:
+        predicted_masks, predicted_tils = run_segmentation_detection(img_tiles, tissue_masks)
+        for x,y,predicted_mask,detections in zip(x_vals,y_vals,predicted_masks,predicted_tils):
             segmentation_writer.write_segmentation(tile=predicted_mask, x=x, y=y)  
-            
-            detections = cell_det_model.predict(image_tile_det,  batch_size = 32, verbose = 0)
-            detections = detections[0,:,:,0]                        
-            detections = extract_predictions(detections, confidence_threshold = 0.1)
-            detections = non_max_supression_distance(detections,distance_threshold = 12)                   
-            if len(detections)>0:
-                detections = [i for i in detections if tissue_mask_tile[int(i[1]),int(i[0])]==1]
             detection_writer.write_detections(detections=detections, spacing=spacing, x_offset=x, y_offset=y) 
-            
             # TILs Score
             if len(detections)>0:
                 for i in detections:
                     if predicted_mask[int(i[1]),int(i[0])] == 2:
-                        no_of_TILs += 1           
-            no_of_stroma += np.count_nonzero(predicted_mask==2)
+                        no_of_TILs += 1
+            no_of_stroma += np.count_nonzero(predicted_mask==2)  
         
     print("Saving...")
     # save segmentation and detection

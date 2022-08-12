@@ -1,8 +1,6 @@
 """ GrandChallenge Input/Output (gcio)
-
 In this file settings concerning folders and paths for reading and writing on GrandChallenge are defined.
 Note that these settings are moslty specific to the GrandChallenge Tiger Challenge.
-
 """
 
 from pathlib import Path
@@ -44,11 +42,9 @@ def initialize_output_folders():
 
 def _get_file_from_folder(folder: Path, suffix: str) -> Path:
     """Gets this first file in a folder with the specified suffix
-
     Args:
         folder (Path): folder to search for files
         suffix (str): suffix for file  to search for
-
     Returns:
         Path: path to file
     """
@@ -57,7 +53,6 @@ def _get_file_from_folder(folder: Path, suffix: str) -> Path:
 
 def get_image_path_from_input_folder() -> Path:
     """Gets a test image which needs to be processed for the Tiger Challenge
-
     Returns:
         Path: path to multiresolution image from the test set
     """
@@ -69,7 +64,6 @@ def get_image_path_from_input_folder() -> Path:
 
 def get_tissue_mask_path_from_input_folder() -> Path:
     """Gets the tissue mask for the corresponding test image that needs to be processed
-
     Returns:
         Path: path to tissue tissue mask
     """

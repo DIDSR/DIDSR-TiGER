@@ -1,10 +1,7 @@
 """Reading and Writing
-
 This file contains utilities for reading and writing. 
-
 It contains a helper function to easily open a multiresolution image.
 Furthermore it contains Writer classes that ease the process of writing prediction masks, detection output, and a tils score.
-
 """
 
 
@@ -21,13 +18,10 @@ WRITING_TILE_SIZE = 256
 
 def open_multiresolutionimage_image(path: Path) -> mir.MultiResolutionImage:
     """Opens a multiresolution image with ASAP python bindings
-
     Args:
         path (Path): path to image
-
     Raises:
         IOError: raises when opened image is None
-
     Returns:
         MultiEesolutionImage: opened multiresolution image
     """
@@ -48,7 +42,6 @@ class SegmentationWriter:
         self, output_path: Path, tile_size: int, dimensions: tuple, spacing: tuple
     ):
         """Writer for writing and saving multiresolution mask/prediction images     
-
         Args:
             output_path (Path): path to output file 
             tile_size (int): tile size used for writing image tiles
@@ -62,10 +55,10 @@ class SegmentationWriter:
         self._writer = mir.MultiResolutionImageWriter()
         self._writer.openFile(str(output_path))
         self._writer.setTileSize(tile_size)
-        self._writer.setCompression(mir.LZW)
-        self._writer.setDataType(mir.UChar)
-        self._writer.setInterpolation(mir.NearestNeighbor)
-        self._writer.setColorType(mir.Monochrome)
+        self._writer.setCompression(mir.Compression_LZW)
+        self._writer.setDataType(mir.DataType_UChar)
+        self._writer.setInterpolation(mir.Interpolation_NearestNeighbor)
+        self._writer.setColorType(mir.ColorType_Monochrome)
         self._writer.writeImageInformation(dimensions[0], dimensions[1])
         pixel_size_vec = mir.vector_double()
         pixel_size_vec.push_back(spacing[0])
@@ -87,7 +80,6 @@ class DetectionWriter:
 
     def __init__(self, output_path: Path):
         """init
-
         Args:
             output_path (Path): path to json output file
         """
@@ -135,7 +127,6 @@ class DetectionWriter:
 class TilsScoreWriter:
     def __init__(self, output_path: Path):
         """Writer for keeping track and saving a tils score.
-
         Args:
             output_path (Path): json file output path
         """
