@@ -10,7 +10,7 @@ For TC (RUMC) dataset, 81 ROIs are annotated. 25 slides have 3 ROIs and one slid
 
 For JB dataset, each slide has 3 ROIs, resulting in 18*3 = 54 ROIs.
 
-The segmentation masks highlight 6 different tissue compartments (invasive tumor, tumor-associated stroma, in-situ tumor, healthy glands, necrosis not in-situ, and inflamed stroma) with label values from 1 to 6. Anything that does not fall into the above-mentioned categories will be labeled as the “rest” class with the label value of 7. Some parts of the ROIs are left without any annotations, those correspond to the label value of 0
+The segmentation masks highlight 6 different tissue compartments (invasive tumor, tumor-associated stroma, in-situ tumor, healthy glands, necrosis not in-situ, and inflamed stroma) with label values from 1 to 6. Anything that does not fall into the above-mentioned categories will be labeled as the “rest” class with the label value of 7. Some parts of the ROIs are left without any annotations, those correspond to the label value of 0.
 
 To design a TILs-scoring algorithm, the key areas are the tumor and the stroma regions. Hence, we focused on those and combined all the others:
 
