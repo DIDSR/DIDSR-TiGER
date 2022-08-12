@@ -16,7 +16,7 @@ For the segmentation evaluation, participants have to only segment the tissue in
 
 ![image](https://user-images.githubusercontent.com/68286434/181014711-78027965-0c48-4c63-a938-dad981dfae3e.png)
 
-As a result, we are segmenting the tissue into "Rest class", "Tumor class" and "Stroma class". The mask values of 0 correspond to the "Rest" class. Mask values of 1 correpond to the "Tumor" class and mask values of 2 corresponds to the "Stroma" class.
+As a result, we are segmenting the tissue into "Rest class", "Tumor class" and "Stroma class". The mask values of 0 correspond to the "Rest" class. Mask values of 1 correpond to the "Tumor" class and mask values of 2 correspond to the "Stroma" class.
 
 The following table shows the class imbalance between the three classes among the TCGA, TC and JB datasets:
 
@@ -67,33 +67,33 @@ Steps below describe the pipeline to develpe the segmentation model:
 ![image](https://user-images.githubusercontent.com/68286434/181015913-a26934d9-2496-4fc2-8569-b48415ac6c93.png)
 
 7) Shuffle the patches using a fixed RandomState set to 42.
-8) Find the calss imbalance between the 3 classes of the patches masks. This will result in a class weight of [1.6,1,0.76]. We will use this class weight in the dice loss function.
-9) We will train a U-Net model using the InceptionV3 as backend. We will also use the pre-trained imagenet weights to train the segmentation model. In order to avoid over fitting we added a dropout layer before the softmax layer. The dropout value is set to 0.4. The InceptionV3 pre-processing unit is used to pre-process the training patches. This will normalize the patches ranging from 0 to 255 to -1 to 1. A batch-size of 32 is used and we will train the network for 30 epochs. ADAM is used as optimizer with a fixed learning rate of 0.0001. Loss function is the compound loss of dice_loss(class_weights) and the categorical focal loss.
+8) Find the calss imbalance between the 3 classes. This will result in a class weight of [1.6,1,0.76]. We will use this class weight in the dice loss function.
+9) The basic segmentation model we developed was U-Net with an InceptionV3 backend, which uses ImageNet pretrained weights to initialize its weights and biases. We also rescaled the RGB values of the training patches mapping the range [0, 255] to [-1, 1]. We added a Dropout layer with the rate of 0.4 before an output SoftMax layer to avoid overfitting. A compound loss function of Dice Loss and Categorical Focal Loss is used in model training. ADAM was chosen as the optimizer with a fixed learning rate of 0.0001.
 Loss = dice_loss(class_weights)+focal_loss.
 
 Training Intersection over Union (IOU) for 30 epochs:
 
 ![image](https://user-images.githubusercontent.com/68286434/181016176-603128cb-bb27-4c7b-ae6b-65cf2cb9ef61.png)
 
-10) The 30th epoch weights will be saved and used as the final model to segment the H&E images into 'rest', 'tumor' and 'stroma' class.
+10) The 30th epoch weights will be saved and used as the final model to segment the H&E slides into 'rest', 'tumor' and 'stroma' classes.
 
-11) We will use the np.argmax function to find the prediction with the highest probaility. 0 corresponds to the rest class, 1 to tumor class and 2 to stroma class.
+11) We will use the np.argmax function to find the prediction with the highest probaility. 0 corresponds to the rest class, 1 corresponds to the tumor class, and 2 to corresponds to the stroma class.
 
-Here you can see some examples when the model is applied to some test patches:
+Examples of model's prediciton on three test patches:
 
 ![image](https://user-images.githubusercontent.com/68286434/181016537-5759b7f1-2f8d-42b6-9b5f-49189f439aed.png)
 ![image](https://user-images.githubusercontent.com/68286434/181016558-3c77633f-cb9a-4074-b0a7-01fc17ab523b.png)
 ![image](https://user-images.githubusercontent.com/68286434/181016594-8ed06c27-c07d-40ad-aa0e-b7b105b81639.png)
 
-Here for our final model, we trained the network using all the images. One might split the data into train/test and observes the model's progress tracking the test performance. Above examples are drawn from some of the experiments we did by spliting the data into train/test with 80/20 split. For our final model we trained the network using all the training data at hand.
+We trained the network using all the images. One might split the data into train and test sets to study the generalizability errors. Above examples are drawn from some of the experiments we did by spliting the data into train and test sets with 80/20 split. 
 
-Our model's segmentation resutls on the experimental hidden set is: 
+Model performance on the experimental hidden test set:
 
 Stroma Dice = 0.7513
 
 Tumor Dice = 0.7372
 
-Our model's segmentation resutls on the final hidden set is: 
+Model performance on the final hidden test set:
 
 Stroma Dice = 0.7717
 
