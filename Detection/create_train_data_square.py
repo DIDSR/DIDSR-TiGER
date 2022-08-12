@@ -2,6 +2,14 @@ import cv2
 import numpy as np
 
 def create_train_data_square(img,bboxes,scale, size):
+    # this function creates a binary mask from the image and the TILs locations.
+    
+    # inputs: img: numpy araye of size (N,N,3)
+    # bboxes : TILs locations, numpy array of size (M,2)
+    # scale: a scalar value to scale the binary mask to different patch sizes. For our task scale is chosen to be 1.
+    # size is the square mask size. Each TILs location centriod point will be enlarged into a square of size "size".
+    
+    #output: binary mask of the TILs locations. Coordinates of the TILs locations on the binary mask.
     image_size_scaled = int(img.shape[0]/scale)
     mask_bg_fg = np.zeros((image_size_scaled,image_size_scaled,1))
     mask_coords = np.zeros((image_size_scaled,image_size_scaled,2))
