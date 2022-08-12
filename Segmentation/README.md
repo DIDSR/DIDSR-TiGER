@@ -10,15 +10,15 @@ For TC (RUMC) dataset, 81 ROIs are annotated. 25 slides have 3 ROIs and one slid
 
 For JB dataset, each slide has 3 ROIs, resulting in 18*3 = 54 ROIs.
 
-The segmentation masks contain values from [0,1,2,3,4,5,6,7]. 0 corresponds to the regions in the ROI not annotated by the pathologist. 1 corresponds to the "invasive-tumor". 2 corresponds to the "tumor-associated stroma". 3 correponds to "in-situ tumor". 4 corresponds to "healthy glands". 5 corresponds to "necrosis not in-situ". 6 corresponds to "inflammed stroma". 7 corresponds to the "rest" class, not falling into any categories described above.
+The segmentation masks highlight 6 different tissue compartments (invasive tumor, tumor-associated stroma, in-situ tumor, healthy glands, necrosis not in-situ, and inflamed stroma) with label values from 1 to 6. Anything that does not fall into the above-mentioned categories will be labeled as the “rest” class with the label value of 7. Some parts of the ROIs are left without any annotations, those correspond to the label value of 0
 
-For the segmentation evaluation, participants have to only segment the tissue into stroma and tumor regions. For that, we relabel the mask values to train a 3-class segmentation model:
+To design a TILs-scoring algorithm, the key areas are the tumor and the stroma regions. Hence, we focused on those and combined all the others:
 
 ![image](https://user-images.githubusercontent.com/68286434/181014711-78027965-0c48-4c63-a938-dad981dfae3e.png)
 
-As a result, we are segmenting the tissue into "Rest class", "Tumor class" and "Stroma class". The mask values of 0 correspond to the "Rest" class. Mask values of 1 correpond to the "Tumor" class and mask values of 2 correspond to the "Stroma" class.
+As a result, we segment the tissue into three regions: "Rest class", "Tumor class" and "Stroma class". The mask values of 0 correspond to the "Rest" class. The mask values of 1 correspond to the "Tumor" class and mask values of 2 correspond to the "Stroma" class.
 
-The following table shows the class imbalance between the three classes among the TCGA, TC and JB datasets:
+The following table shows the class imbalance between the three classes:
 
 ![image](https://user-images.githubusercontent.com/68286434/181014748-7d3f4343-689a-43b5-92df-6350f2f03830.png)
 
