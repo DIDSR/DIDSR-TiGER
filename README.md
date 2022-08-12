@@ -2,8 +2,6 @@
 
 This repository contains the algorithm and the codes developed to predict a "TILs-score" in breast cancer histhopathology H&E slides. The training and the test data is provided by the TiGER challenge team (https://tiger.grand-challenge.org/). Our model is ranked 5th in the final leaderboard of the TiGER challenge with a C-index (concordance index) of 0.6034. The winning algorithm resulted in a C-index of 0.6388.
 
-![image](https://user-images.githubusercontent.com/68286434/181017984-7b545385-7203-4c74-8dc8-6592c22b6bb9.png)
-
 To design a TILs-score, we first need to segment the tissue into stromal and tumor regions. Then we need to identify the TILs on the stromal regions. One example is shown in the figure below:
 
 ![image](https://user-images.githubusercontent.com/68286434/181020487-3b1ad0cb-91fe-4b2b-8ea6-6fd07f41baf1.png)
