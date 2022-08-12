@@ -6,8 +6,7 @@ def count_tp_fp_fn(pred,gt,prob_threshold,hit_distance):
     
     # inputs: A numpy array of shape [N,3] for pred and gt. N is the number of detections. The first column is the x-position of the detections.
     # the second column is the y-position of the detections. the third column is the probability associated with detections.
-    # The hit-distance is the minimum distance by which if a detection is within the hit-distance radius of the ground truth, it will be counted as a true-positive,
-    # otherwsie, it will be counted as a false positive.
+    # The hit-distance is the maximum distance of a detection from the ground-truth to be counted as a true-positive, otherwsie, it will be counted as a false positive.
     # The prob_threshld is the threshold value in which detections with probabilities smaller than the threshold value will be discarded.
     
     #output: number of ture-positives, false positives, and false negatives.
