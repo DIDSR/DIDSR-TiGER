@@ -4,7 +4,7 @@ To train the segmentation algorithm run the "segmentation.py" script.
 
 The training data is composed of 151 slides from the TCGA dataset, 26 slides from the RUMC dataset (we will call it TC from now on), and 18 slides from the JB dataset (https://tiger.grand-challenge.org/Data/).
 
-For TCGA dataset, each slide has exacly one region of interest (ROI) annotated by the pathologist, resulting in 151 ROIs.
+For TCGA dataset, each slide has exacly one region of interest (ROI) annotated by pathologists, resulting in 151 ROIs.
 
 For TC (RUMC) dataset, 81 ROIs are annotated. 25 slides have 3 ROIs and one slide has 6 ROIs, resulting in total of 25*3+6 = 81 ROIs.
 
