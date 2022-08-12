@@ -1,7 +1,7 @@
 import numpy as np
 
 def aug_imgs_points_randomly(patches, patches_points, patch_size = 128):
-    idx = np.random.randint(0,4,len(patches))    
+    idx = np.random.RandomState(42).randint(0,4,len(patches))    
     aug_patches = []
     aug_patches_points = []    
     for i in range(len(patches)):  
