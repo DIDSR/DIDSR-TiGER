@@ -55,7 +55,7 @@ Combine all the extracted patches from TCGA, TC and JB. This will result in 2365
 
 We train a binary segmentation U-Net model with the InceptionV3 as backend. Imagenet pretrained weights are used to initialize the weights and biases. The input patches to the network are rescaled from [0,255] to [0,1]. The loss function is a binary cross entropy loss. We train the network for 1 epoch with a batch size of 32. ADAM is chosen as the optimizer with a fixed learning rate of 0.001.
 
-Example of model's predicitons on three test patches:
+Examples of model's prediciton on three test patches:
 
 ![image](https://user-images.githubusercontent.com/68286434/181013799-de0fe60c-562f-45c4-b02a-9644b598918c.png)
 ![image](https://user-images.githubusercontent.com/68286434/181013818-0794c709-5978-4e27-a343-61eecb1e225e.png)
@@ -63,7 +63,7 @@ Example of model's predicitons on three test patches:
 
 In order to extract the x,y location of the detected TILs from the prediction masks, we first filter the mask values below a threshold value of 0.1. Anything with probability less than 0.1 will be discarded. Furthermore, by applying a non-max suppression on the distance, we can obtain the centroid position of the TILs. The non-max suppression distance threshlold is set to 12 pixels which is equal to the suqare size in the traning masks:
 
-![image](https://user-images.githubusercontent.com/68286434/181013935-269968a5-b4b5-4bcf-a356-6d405ff4b615.png)
+![image](https://user-images.githubusercontent.com/68286434/184369672-585ac796-f808-47fc-8465-f5b686facbc6.png)
 
 Figure below is the FROC plot of the model's prediction on all of the test patches. We can compute the FROC score with a hit distance set to 8 pixels. This distance is chosen by the organizers of the TIGER challenge (A detection will be a True-Positive if it lies within a distance of 8 pixels with respect to the ground-truth).
 
