@@ -46,9 +46,8 @@ The function "extract_jb_data.py" loads the JB images and masks. Here you can se
 
 ![image](https://user-images.githubusercontent.com/68286434/181014921-c9c09afb-bd66-4140-a465-3b9eaf2fd41f.png)
 
-A 3-class [segmentation model](https://github.com/qubvel/segmentation_models) based on the U-Net model with InceptionV3 as backend is developed to train the segmentation model.
-
-Steps below describe the pipeline to develope the segmentation model:
+## Model development
+A 3-class [segmentation model](https://github.com/qubvel/segmentation_models) based on the U-Net model with InceptionV3 as backend is developed to train the segmentation model. Steps below describe the pipeline to develope the segmentation model:
 
 1) Load all the TCGA, TC and JB images and masks.
 2) Relabel the mask values to 0,1 and 2 ("change_masks.py" relables the mask values).
