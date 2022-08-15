@@ -6,17 +6,9 @@ The [training data](https://tiger.grand-challenge.org/Data/) is composed of 1744
 
 Examples from the TCGA, TC and JB datasets are provided here (blue dots are the TILs annotations):
 
-JB Example
-
-![image](https://user-images.githubusercontent.com/68286434/181012474-85dfc8a6-5673-4f23-a6e3-c21aa7dc938c.png)
-
-TC Example:
-
-![image](https://user-images.githubusercontent.com/68286434/181012510-91319e12-f336-4349-9992-2e569a41cb68.png)
-
-TCGA Exmaple:
-
-![image](https://user-images.githubusercontent.com/68286434/181012537-d2acc5de-7fbe-4631-a2c8-1aa60e438d71.png)
+| JB Example | TC Example | TCGA Exmaple |
+| ---------- | ---------- | ------------ |
+| ![image](https://user-images.githubusercontent.com/68286434/181012474-85dfc8a6-5673-4f23-a6e3-c21aa7dc938c.png) | ![image](https://user-images.githubusercontent.com/68286434/181012510-91319e12-f336-4349-9992-2e569a41cb68.png) | ![image](https://user-images.githubusercontent.com/68286434/181012537-d2acc5de-7fbe-4631-a2c8-1aa60e438d71.png) |
 
  - For TCGA dataset, most of the annotated ROIs are smaller than 256 pixels. For that, we intentionally extract larger ROIs of size of 500 pixels form the TIFF images (expanding the original ROIs). This will ensure that we can train a model with trainig patches of size of 256 pixels. We split the ROIs randomly into a train and a test set. Train set contains of 1578 ROIs with 18585 TILs. Test set contains of 166 ROIs with 2142 TILs.
 
