@@ -1,3 +1,8 @@
+# this function creates the segmentation model by adding a dropout layer before the output softmax layer. 
+# different backbones can be used. num_classes is the number of classes to segment. One can change the input patch size as well.
+# model_dp is the segmentation model to train. preprocess_input is the preprocessing input for the input patches to the model. In case of InceptionV3 this function
+# rescales the input patches from [0,256] to [-1,1].
+
 import tensorflow
 import segmentation_models as sm
 sm.set_framework('tf.keras')
