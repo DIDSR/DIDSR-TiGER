@@ -24,7 +24,7 @@ The following table shows the class imbalance between the three classes:
 
 ## Data loading
 
-Loading TCGA images, masks:
+**Loading TCGA images, masks:**
 
 The function `extract_tcga_data.py` loads the TCGA images and masks. Some of the masks in the TCGA dataset are rotated. This function automatically corrects for the rotations. One example of these rotations is provided here:
 
@@ -34,13 +34,13 @@ Here you can see one example of TCGA ROI and the corresponding mask (mask values
 
 ![image](https://user-images.githubusercontent.com/68286434/181014817-106f1c69-8f99-4c74-ae92-b3b731c13535.png)
 
-Loading TC images, masks:
+**Loading TC images, masks:**
 
 The function "extract_tc_data.py" loads the TC images and masks. Here you can see one example of TC ROI and the corresponding mask (mask values are relabled to 0,1,2):
 
 ![image](https://user-images.githubusercontent.com/68286434/181014877-25820a36-ecc7-4a2c-be6a-bf73994d470f.png)
 
-Loading JB images, masks:
+**Loading JB images, masks:**
 
 The function "extract_jb_data.py" loads the JB images and masks. Here you can see one example of JB ROI and the corresponding mask (mask values are relabled to 0,1,2):
 
