@@ -1,6 +1,6 @@
 ## **DIDSR-TiGER Algorithm**
 
-This repository contains the algorithm and the codes developed to predict a "TILs-score" in breast cancer histhopathology H&E slides. The training and the test data is provided by the TiGER challenge team (https://tiger.grand-challenge.org/). Our model is ranked [5th in the final leaderboard](https://tiger.grand-challenge.org/evaluation/survival-final-evaluation/leaderboard/) of the TiGER challenge with a C-index (concordance index) of 0.6034. The winning algorithm resulted in a C-index of 0.6388.
+This repository contains the algorithm and the codes developed to predict a "TILs-score" in breast cancer histhopathology H&E slides. The training and the test data is provided by the TiGER challenge team (https://tiger.grand-challenge.org/). Our model is ranked [5th in the final leaderboard](https://tiger.grand-challenge.org/evaluation/survival-final-evaluation/leaderboard/){:target="_blank" rel="noopener"} of the TiGER challenge with a C-index (concordance index) of 0.6034. The winning algorithm resulted in a C-index of 0.6388.
 
 To design a TILs-score, we first need to segment the tissue into stromal and tumor regions. We then need to identify the TILs on the tissue regions. One example is shown in the figure below:
 
