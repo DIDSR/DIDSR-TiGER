@@ -36,13 +36,13 @@ Here you can see one example of TCGA ROI and the corresponding mask (mask values
 
 **Loading TC images, masks:**
 
-The function "extract_tc_data.py" loads the TC images and masks. Here you can see one example of TC ROI and the corresponding mask (mask values are relabled to 0,1,2):
+The function `extract_tc_data.py` loads the TC images and masks. Here you can see one example of TC ROI and the corresponding mask (mask values are relabled to 0,1,2):
 
 ![image](https://user-images.githubusercontent.com/68286434/181014877-25820a36-ecc7-4a2c-be6a-bf73994d470f.png)
 
 **Loading JB images, masks:**
 
-The function "extract_jb_data.py" loads the JB images and masks. Here you can see one example of JB ROI and the corresponding mask (mask values are relabled to 0,1,2):
+The function `extract_jb_data.py` loads the JB images and masks. Here you can see one example of JB ROI and the corresponding mask (mask values are relabled to 0,1,2):
 
 ![image](https://user-images.githubusercontent.com/68286434/181014921-c9c09afb-bd66-4140-a465-3b9eaf2fd41f.png)
 
@@ -50,9 +50,9 @@ The function "extract_jb_data.py" loads the JB images and masks. Here you can se
 A 3-class [segmentation model](https://github.com/qubvel/segmentation_models) based on the U-Net model with InceptionV3 as backend is developed to train the segmentation model. Steps below describe the pipeline to develope the segmentation model:
 
 1) Load all the TCGA, TC and JB images and masks.
-2) Relabel the mask values to 0,1 and 2 ("change_masks.py" relables the mask values).
+2) Relabel the mask values to 0,1 and 2 (`change_masks.py` relables the mask values).
 3) Combine all the images and masks.
-4) Extract patches of size 256 with a stride of 128 (crop_img_msk.py extract patches of size "256" and a stride of "128"). This will result in 16039 patches. Extract patches of size 256 with a stride of 128 with angle of 45 degrees (extarct_patches_with_angle.py extract patches of size "256" and a stride of "128" with a specific angle of "45 degrees"). This will result in 9300 patches. Extract patches of size 256 with a stride of 128 with angle of minus 45 degrees. This will result in 9354 patches.
+4) Extract patches of size 256 with a stride of 128 (`crop_img_msk.py` extract patches of size "256" and a stride of "128"). This will result in 16039 patches. Extract patches of size 256 with a stride of 128 with angle of 45 degrees (`extarct_patches_with_angle.py` extract patches of size "256" and a stride of "128" with a specific angle of "45 degrees"). This will result in 9300 patches. Extract patches of size 256 with a stride of 128 with angle of minus 45 degrees. This will result in 9354 patches.
 5) Combine all the extracted patches to obtain 34696 patches (16039+9300+9354 = 34693). Here you can see the patch extraction scheme:
 
 ![image](https://user-images.githubusercontent.com/68286434/181015792-51195300-61ae-48c7-b81c-1f6a7ab395e2.png)
