@@ -1,6 +1,12 @@
 import numpy as np
 
 def crop_img_bbox(img,bboxes,size,step):
+    # This function crops an image with sliding window technique. Size is the sliding window patch size and step is the stride of the sliding window.
+    # Inputs: img = A numpy array of size (N,M,3)
+    #         bboxes = A numpy array of szie (P,2)
+    # Outputs: cropped_img: Extracted Patches
+    #          cropped_bboxes: Extracted patches TILs
+    
     bboxes = np.array(bboxes)
     cropped_img = []    
     cropped_bboxes = []
