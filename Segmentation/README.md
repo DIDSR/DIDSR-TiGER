@@ -1,18 +1,18 @@
-## **Segmentation Algorithm**
+# **Segmentation Algorithm**
 
-To train the segmentation algorithm run the "segmentation.py" script.
+To train the segmentation algorithm run the `segmentation.py` script.
 
-The training data is composed of 151 slides from the TCGA dataset, 26 slides from the RUMC dataset (we will call it TC from now on), and 18 slides from the JB dataset (https://tiger.grand-challenge.org/Data/).
+The [training data](https://tiger.grand-challenge.org/Data/) is composed of 151 slides from the TCGA dataset, 26 slides from the RUMC dataset (we will call it TC from now on), and 18 slides from the JB dataset.
 
-For TCGA dataset, each slide has exacly one region of interest (ROI) annotated by pathologists, resulting in 151 ROIs.
+ - For TCGA dataset, each slide has exacly one region of interest (ROI) annotated by pathologists, resulting in 151 ROIs.
 
-For TC (RUMC) dataset, 81 ROIs are annotated. 25 slides have 3 ROIs and one slide has 6 ROIs, resulting in total of 25*3+6 = 81 ROIs.
+ - For TC (RUMC) dataset, 81 ROIs are annotated. 25 slides have 3 ROIs and one slide has 6 ROIs, resulting in total of 25*3+6 = 81 ROIs.
 
-For JB dataset, each slide has 3 ROIs, resulting in 18*3 = 54 ROIs.
+ - For JB dataset, each slide has 3 ROIs, resulting in 18*3 = 54 ROIs.
 
-The segmentation masks highlight 6 different tissue compartments (invasive tumor, tumor-associated stroma, in-situ tumor, healthy glands, necrosis not in-situ, and inflamed stroma) with label values from 1 to 6. Anything that does not fall into the above-mentioned categories will be labeled as the “rest” class with the label value of 7. Some parts of the ROIs are left without any annotations, those correspond to the label value of 0.
+## Class labeling
 
-To design a TILs-scoring algorithm, the key areas are the tumor and the stroma regions. Hence, we focused on those and combined all the others:
+The segmentation masks highlight 6 different tissue compartments (invasive tumor, tumor-associated stroma, in-situ tumor, healthy glands, necrosis not in-situ, and inflamed stroma) with label values from 1 to 6. Anything that does not fall into the above-mentioned categories will be labeled as the “rest” class with the label value of 7. Some parts of the ROIs are left without any annotations, those correspond to the label value of 0. To design a TILs-scoring algorithm, the key areas are the tumor and the stroma regions. Hence, we focused on those and combined all the others:
 
 ![image](https://user-images.githubusercontent.com/68286434/181014711-78027965-0c48-4c63-a938-dad981dfae3e.png)
 
