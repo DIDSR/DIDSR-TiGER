@@ -1,6 +1,7 @@
 import numpy as np
 
 def crop_img_msk(img, msk, size, stride):
+    # this function crops an image and its corresponding mask using the sliding window technique. Size is the patch size of the sliding window and stride is the stride of the sliding window patches.
     cropped_img = []  
     cropped_msk = []     
     size_x = img.shape[1]
