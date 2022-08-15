@@ -1,8 +1,8 @@
 ## **Detection Algorithm**
 
-In order to train the detection model run the "detection.py" script.
+In order to train the detection model run the `detection.py` script.
 
-The training data is composed of 1744 ROIs from the TCGA dataset where 20727 TILs are annotated, 81 ROIs from the RUMC dataset (we will call it TC from now on) where 4728 TILs are annotated, and 54 ROIs from the JB dataset where 5523 TILs are annotated (https://tiger.grand-challenge.org/Data/). Each TIL annotation marks the centroid position of the cells: [x_c , y_c] where x_c and y_c are the centroid positions along the x and y axis correspondingly.
+The [training data](https://tiger.grand-challenge.org/Data/) is composed of 1744 ROIs from the TCGA dataset where 20727 TILs are annotated, 81 ROIs from the RUMC dataset (we will call it TC from now on) where 4728 TILs are annotated, and 54 ROIs from the JB dataset where 5523 TILs are annotated. Each TIL annotation marks the centroid position of the cells: [x_c , y_c] where x_c and y_c are the centroid positions along the x and y axis correspondingly.
 
 Examples from the TCGA, TC and JB datasets are provided here (blue dots are the TILs annotations):
 
@@ -18,17 +18,13 @@ TCGA Exmaple:
 
 ![image](https://user-images.githubusercontent.com/68286434/181012537-d2acc5de-7fbe-4631-a2c8-1aa60e438d71.png)
 
-For TCGA dataset, most of the annotated ROIs are smaller than 256 pixels. For that, we intentionally extract larger ROIs of size of 500 pixels form the TIFF images (expanding the original ROIs). This will ensure that we can train a model with trainig patches of size of 256 pixels.
+ - For TCGA dataset, most of the annotated ROIs are smaller than 256 pixels. For that, we intentionally extract larger ROIs of size of 500 pixels form the TIFF images (expanding the original ROIs). This will ensure that we can train a model with trainig patches of size of 256 pixels. We split the ROIs randomly into a train and a test set. Train set contains of 1578 ROIs with 18585 TILs. Test set contains of 166 ROIs with 2142 TILs.
 
-For TCGA dataset, we split the ROIs randomly into a train and a test set. Train set contains of 1578 ROIs with 18585 TILs. Test set contains of 166 ROIs with 2142 TILs.
+ - For TC dataset, we split the ROIs randomly into a train and a test set. Train set contains of 76 ROIs with 4456 TILs. Test set contains of 5 ROIs with 272 TILs.
 
-For TC dataset, we split the ROIs randomly into a train and a test set. Train set contains of 76 ROIs with 4456 TILs. Test set contains of 5 ROIs with 272 TILs.
+ - For JB dataset, we split the ROIs randomly into a train and a test set. Train set contains of 49 ROIs with 4891 TILs. Test set contains of 5 ROIs with 632 TILs.
 
-For JB dataset, we split the ROIs randomly into a train and a test set. Train set contains of 49 ROIs with 4891 TILs. Test set contains of 5 ROIs with 632 TILs.
-
-We developed a binary segmentation model using a U-Net model with InceptionV3 as backend. The following library is used to train the detection model:
-
-https://github.com/qubvel/segmentation_models
+A binary [segmentation model](https://github.com/qubvel/segmentation_models) based on the U-Net model with InceptionV3 as backend is used to train the detection model.
 
 Steps below describe the pipeline to develpe the detection algorithm:
 
