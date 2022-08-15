@@ -64,8 +64,12 @@ A 3-class [segmentation model](https://github.com/qubvel/segmentation_models) ba
 7) Shuffle the patches using a fixed RandomState..
 8) Find the calss imbalance between the 3 classes. This will result in a class weight of [1.6,1,0.76]. This class weight  will be used in the dice loss function.
 
-The basic segmentation model we developed was U-Net with an InceptionV3 backend, which uses ImageNet pretrained weights to initialize its weights and biases. We also rescaled the RGB values of the training patches mapping the range [0, 255] to [-1, 1]. We added a Dropout layer with the rate of 0.4 before an output SoftMax layer to avoid overfitting. A compound loss function of Dice Loss and Categorical Focal Loss is used in model training. ADAM was chosen as the optimizer with a fixed learning rate of 0.0001.
-Loss = dice_loss(class_weights)+focal_loss.
+The basic segmentation model we developed was U-Net with an InceptionV3 backend, which uses ImageNet pretrained weights to initialize its weights and biases. We also rescaled the RGB values of the training patches mapping the range [0, 255] to [-1, 1]. We added a Dropout layer with the rate of 0.4 before an output SoftMax layer to avoid overfitting. 
+
+## Training
+**Loss:**  a compound loss function of Dice Loss and Categorical Focal Loss is used in model training.
+> Loss = dice_loss(class_weights)+focal_loss.
+**Optimizer:** ADAM (learning rate = 0.0001)
 
 Training Intersection over Union (IOU) for 30 epochs:
 
