@@ -22,9 +22,11 @@ The following table shows the class imbalance between the three classes:
 
 ![image](https://user-images.githubusercontent.com/68286434/181014748-7d3f4343-689a-43b5-92df-6350f2f03830.png)
 
+## Data loading
+
 Loading TCGA images, masks:
 
-The function "extract_tcga_data.py" loads the TCGA images and masks. Some of the masks in the TCGA dataset are rotated. This function automatically corrects for the rotations. One example of these rotations is provided here:
+The function `extract_tcga_data.py` loads the TCGA images and masks. Some of the masks in the TCGA dataset are rotated. This function automatically corrects for the rotations. One example of these rotations is provided here:
 
 ![image](https://user-images.githubusercontent.com/68286434/181014785-b3061da8-37eb-48f6-917f-43b7f4d0a420.png)
 
