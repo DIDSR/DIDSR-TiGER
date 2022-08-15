@@ -1,10 +1,10 @@
-## **Detection Algorithm**
+# **Detection Algorithm**
 
 In order to train the detection model run the `detection.py` script.
 
 The [training data](https://tiger.grand-challenge.org/Data/) is composed of 1744 ROIs from the TCGA dataset where 20727 TILs are annotated, 81 ROIs from the RUMC dataset (we will call it TC from now on) where 4728 TILs are annotated, and 54 ROIs from the JB dataset where 5523 TILs are annotated. Each TIL annotation marks the centroid position of the cells: [x_c , y_c] where x_c and y_c are the centroid positions along the x and y axis correspondingly.
 
-###### Examples from the TCGA, TC and JB datasets are provided here (blue dots are the TILs annotations):
+## Examples from the TCGA, TC and JB datasets are provided here (blue dots are the TILs annotations):
 
 | JB Example | TC Example | TCGA Exmaple |
 | ---------- | ---------- | ------------ |
@@ -18,7 +18,7 @@ The [training data](https://tiger.grand-challenge.org/Data/) is composed of 1744
 
 A binary [segmentation model](https://github.com/qubvel/segmentation_models) based on the U-Net model with InceptionV3 as backend is used to train the detection model.
 
-###### Steps below describe the pipeline to develpe the detection algorithm:
+## Steps below describe the pipeline to develpe the detection algorithm:
 
 1) Load all the TCGA, TC and JB images and TIL annotations. Split the data into train/test (this is emmbeded within the load functions).
 
@@ -43,7 +43,7 @@ Combine all the extracted patches from TCGA, TC and JB. This will result in 2365
 
 We train a binary segmentation U-Net model with the InceptionV3 as backend. Imagenet pretrained weights are used to initialize the weights and biases. The input patches to the network are rescaled from [0,255] to [0,1]. The loss function is a binary cross entropy loss. We train the network for 1 epoch with a batch size of 32. ADAM is chosen as the optimizer with a fixed learning rate of 0.001.
 
-###### Examples of model's prediciton on three test patches:
+## Examples of model's prediciton on three test patches:
 
 ![image](https://user-images.githubusercontent.com/68286434/181013799-de0fe60c-562f-45c4-b02a-9644b598918c.png)
 ![image](https://user-images.githubusercontent.com/68286434/181013818-0794c709-5978-4e27-a343-61eecb1e225e.png)
