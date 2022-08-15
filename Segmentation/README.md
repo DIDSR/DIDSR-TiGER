@@ -88,16 +88,16 @@ Examples of model's predicitons on three test patches:
 
 Here, we trained the network using all the training data. One might split the data into train and test sets to study the generalizability errors. Above examples are drawn from some of the experiments we did by spliting the data into train and test sets with 80/20 split. 
 
-Final model's performance on the experimental hidden test set:
+**Final model's performance on the experimental hidden test set:**
 
-Stroma Dice = 0.7513
+> Stroma Dice = 0.7513
 
-Tumor Dice = 0.7372
+> Tumor Dice = 0.7372
 
-Final model's performance on the final hidden test set:
+**Final model's performance on the final hidden test set:**
 
-Stroma Dice = 0.7717
+> Stroma Dice = 0.7717
 
-Tumor Dice = 0.7056
+> Tumor Dice = 0.7056
 
 
