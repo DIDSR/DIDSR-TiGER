@@ -16,7 +16,7 @@ The [training data](https://tiger.grand-challenge.org/Data/) is composed of 1744
 
  - For JB dataset, we split the ROIs randomly into a train and a test set. Train set contains of 49 ROIs with 4891 TILs. Test set contains of 5 ROIs with 632 TILs.
 
-A binary [segmentation model](https://github.com/qubvel/segmentation_models) based on the U-Net model with InceptionV3 as backend is used to train the detection model.
+A binary [segmentation model](https://github.com/qubvel/segmentation_models) based on the U-Net model with InceptionV3 as backend is developed to train the detection model.
 
 ## Steps below describe the pipeline to develpe the detection algorithm:
 
