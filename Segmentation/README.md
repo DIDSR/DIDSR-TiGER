@@ -69,6 +69,7 @@ The basic segmentation model we developed was U-Net with an InceptionV3 backend,
 ## Training
 **Loss:**  a compound loss function of Dice Loss and Categorical Focal Loss is used in model training.
 > Loss = dice_loss(class_weights)+focal_loss.
+
 **Optimizer:** ADAM (learning rate = 0.0001)
 
 Training Intersection over Union (IOU) for 30 epochs:
