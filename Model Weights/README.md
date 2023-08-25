@@ -1,2 +1,3 @@
-To receive the model weights please send us an email at:
-arian.arab@fda.hhs.gov
+Model Weights can be downloaded from the following link:
+
+https://zenodo.org/record/8283344
